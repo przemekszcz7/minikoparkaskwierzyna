@@ -13,12 +13,10 @@ import {
   X, 
   Menu, 
   Wrench, 
-  Download, 
   Copy, 
   Compass, 
   CheckCircle2, 
-  ChevronDown,
-  ExternalLink
+  ChevronDown
 } from 'lucide-react';
 
 // Data types
@@ -167,14 +165,6 @@ export default function App() {
     setActiveGallery(gallery);
     setLightboxIndex(index);
     setLightboxTitle(title);
-  };
-
-  const handleDownloadSingleHTML = () => {
-    // Generate simple trigger for download or show code modal
-    const link = document.createElement('a');
-    link.href = '/mini-koparka-skwierzyna.html';
-    link.download = 'index.html';
-    link.click();
   };
 
   return (
