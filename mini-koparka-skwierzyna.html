@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Koparka Skwierzyna • Usługi Ziemne 2.6T • Wywrotka 3.5T</title>
+  
+  <!-- Font Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN (zoptymalizowany dla pojedynczych plików HTML) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Konfiguracja Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#111111',
+              red: '#d32f2f',
+              light: '#f5f5f5'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Klasy pojawiania się (Scroll Reveal) */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Efekt szła (Glassmorphism) */
+    .glass-panel {
+      background: rgba(17, 17, 17, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    /* Ukrywanie scrollbara lightboxa */
+    .no-scroll {
+      overflow: hidden;
+    }
+    
+    /* Stylizacja wejść i opóźnień scroll reveal */
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+  </style>
+</head>
+<body class="bg-[#111111] text-gray-100 antialiased font-sans selection:bg-[#d32f2f] selection:text-white">
+
+  <!-- GÓRNA NAWIGACJA (STICKY HEADER) -->
+  <nav id="main-nav" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 py-5 bg-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      
+      <!-- Logo i Nazwa -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <img 
+          src="https://i.ibb.co/WNMZVsfs/669763260-122108823956954926-8129804684380492949-n.jpg" 
+          alt="Mini Koparka Skwierzyna" 
+          class="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#d32f2f]/30 object-cover group-hover:scale-105 transition-transform"
+          referrerpolicy="no-referrer"
+        >
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-base md:text-lg tracking-wider text-white uppercase group-hover:text-brand-red transition-colors">
+            Mini Koparka
+          </span>
+          <span class="font-mono text-[10px] md:text-xs text-gray-400 tracking-widest uppercase">Skwierzyna</span>
+        </div>
+      </a>
+
+      <!-- Linki na desktopie -->
+      <div class="hidden lg:flex items-center gap-8 font-medium">
+        <a href="#o-firmie" class="text-gray-300 hover:text-white transition-colors text-sm hover:border-b-2 hover:border-brand-red pb-1">O firmie</a>
+        <a href="#uslugi" class="text-gray-300 hover:text-white transition-colors text-sm hover:border-b-2 hover:border-brand-red pb-1">Zakres usług</a>
+        <a href="#sprzet" class="text-gray-300 hover:text-white transition-colors text-sm hover:border-b-2 hover:border-brand-red pb-1">Sprzęt</a>
+        <a href="#dlaczego-warto" class="text-gray-300 hover:text-white transition-colors text-sm hover:border-b-2 hover:border-brand-red pb-1">Dlaczego warto?</a>
+        <a href="#realizacje" class="text-gray-300 hover:text-white transition-colors text-sm hover:border-b-2 hover:border-brand-red pb-1">Realizacje</a>
+        <a href="#obszar" class="text-gray-300 hover:text-white transition-colors text-sm hover:border-b-2 hover:border-brand-red pb-1">Obszar działania</a>
+        <a href="#kontakt" class="text-gray-300 hover:text-white transition-colors text-sm hover:border-b-2 hover:border-brand-red pb-1">Kontakt</a>
+      </div>
+
+      <!-- Przycisk Zadzwoń (Desktop) -->
+      <div class="hidden lg:flex items-center">
+        <a 
+          href="tel:787153620" 
+          class="flex items-center gap-2 bg-brand-red hover:bg-[#b52626] text-white px-5 py-2.5 rounded-lg font-bold text-sm tracking-wider uppercase shadow-lg shadow-[#d32f2f]/20 transition-all transform hover:-translate-y-0.5"
+        >
+          <!-- Telefon SVG -->
+          <svg class="w-4 h-4 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>787 153 620</span>
+        </a>
+      </div>
+
+      <!-- Hamburger (Mobile) -->
+      <button 
+        id="mobile-menu-btn"
+        class="lg:hidden text-white p-2 hover:bg-white/5 rounded-lg transition"
+        aria-label="Menu"
+      >
+        <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Szuflada mobilna -->
+    <div 
+      id="mobile-drawer" 
+      class="hidden lg:hidden w-full bg-[#111111]/98 backdrop-blur-xl border-b border-white/10 shadow-2xl py-6 px-4 flex flex-col gap-4"
+    >
+      <a href="#o-firmie" class="mobile-nav-link text-gray-300 hover:text-white text-lg py-1 border-b border-white/5 transition">O firmie</a>
+      <a href="#uslugi" class="mobile-nav-link text-gray-300 hover:text-white text-lg py-1 border-b border-white/5 transition">Zakres usług</a>
+      <a href="#sprzet" class="mobile-nav-link text-gray-300 hover:text-white text-lg py-1 border-b border-white/5 transition">Sprzęt</a>
+      <a href="#dlaczego-warto" class="mobile-nav-link text-gray-300 hover:text-white text-lg py-1 border-b border-white/5 transition">Dlaczego warto?</a>
+      <a href="#realizacje" class="mobile-nav-link text-gray-300 hover:text-white text-lg py-1 border-b border-white/5 transition">Realizacje</a>
+      <a href="#obszar" class="mobile-nav-link text-gray-300 hover:text-white text-lg py-1 border-b border-white/5 transition">Obszar działania</a>
+      <a href="#kontakt" class="mobile-nav-link text-gray-300 hover:text-white text-lg py-1 border-b border-white/5 transition">Kontakt</a>
+      <a 
+        href="tel:787153620" 
+        class="flex items-center justify-center gap-3 bg-brand-red hover:bg-[#b52626] text-white py-3.5 rounded-lg font-bold tracking-wider uppercase mt-4 transition"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        <span>Zadzwoń: 787 153 620</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION (NAGŁÓWEK) -->
+  <section 
+    id="hero" 
+    class="relative min-h-screen flex items-center justify-center bg-cover bg-center pt-28 pb-20 px-4 overflow-hidden"
+    style="background-image: url('https://i.ibb.co/g0XYmwS/681232589-122110851746954926-3493901843434870529-n.jpg')"
+  >
+    <!-- Ciemny overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/75 to-black/60 z-0"></div>
+    
+    <!-- Linia siatki w tle -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] opacity-35 z-0"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
+      
+      <!-- Logo Badge z delikatną poświatą -->
+      <div class="relative mb-6 animate-pulse-slow">
+        <div class="absolute inset-0 rounded-full bg-[#d32f2f]/20 blur-xl scale-125"></div>
+        <img 
+          src="https://i.ibb.co/WNMZVsfs/669763260-122108823956954926-8129804684380492949-n.jpg" 
+          alt="Mini Koparka Skwierzyna" 
+          class="w-24 h-24 md:w-28 md:h-28 rounded-full border-2 border-brand-red/50 shadow-2xl object-cover relative z-10"
+          referrerPolicy="no-referrer"
+        >
+      </div>
+
+      <!-- Slogan -->
+      <span class="inline-block bg-brand-red text-white font-mono text-xs md:text-sm font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 shadow-lg border border-white/10">
+        🚜 Żadnej pracy się nie boimy!
+      </span>
+
+      <!-- Główny Tytuł -->
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-7xl tracking-tight text-white uppercase drop-shadow-2xl mb-2">
+        Mini Koparka <span class="text-brand-red">Skwierzyna</span>
+      </h1>
+
+      <!-- Podtytuł -->
+      <p class="font-display text-xl sm:text-2xl md:text-3xl text-gray-200 font-semibold tracking-wide mb-6">
+        Minikoparka <span class="text-brand-red font-mono">2,6T</span> • Wywrotka <span className="text-brand-red font-mono">3,5T</span>
+      </p>
+
+      <!-- Krótki opis -->
+      <p class="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-10 drop-shadow-md">
+        Świadczymy profesjonalne usługi ziemne minikoparką oraz wywrotką. Obsługujemy klientów prywatnych i firmy, realizując zarówno niewielkie prace ogrodowe, jak i kompleksowe roboty ziemne.
+      </p>
+
+      <!-- Przyciski CTA -->
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
+        <a 
+          href="tel:787153620" 
+          class="flex items-center justify-center gap-3 bg-brand-red hover:bg-[#b52626] text-white px-8 py-4 rounded-xl font-bold tracking-wider uppercase text-base shadow-xl shadow-brand-red/30 transition-all transform hover:-translate-y-1 hover:scale-[1.02]"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>📞 Zadzwoń</span>
+        </a>
+        <a 
+          href="#kontakt" 
+          class="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-xl font-bold tracking-wider uppercase text-base transition-all transform hover:-translate-y-1"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <span>✉️ Dane kontaktowe</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Strzałka w dół -->
+    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition">
+      <span class="text-[10px] font-mono tracking-widest uppercase">Przewiń</span>
+      <svg class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- O FIRMIE SECTION -->
+  <section id="o-firmie" class="py-24 bg-[#111111] relative overflow-hidden">
+    <div class="absolute right-0 top-1/4 w-96 h-96 bg-brand-red/5 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 reveal-item">
+          <div class="flex items-center gap-2 text-brand-red mb-3">
+            <span class="w-8 h-[2px] bg-brand-red"></span>
+            <span class="font-mono text-xs uppercase tracking-widest font-bold">Poznaj nas bliżej</span>
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl uppercase text-white leading-tight mb-6">
+            O Naszej <br>
+            <span class="text-brand-red">Działalności</span>
+          </h2>
+          <div class="h-1.5 w-20 bg-[#d32f2f] rounded mb-8"></div>
+        </div>
+
+        <div class="lg:col-span-7 reveal-item delay-100">
+          <div class="glass-panel p-8 md:p-10 rounded-2xl relative overflow-hidden group hover:border-brand-red/20 transition-all duration-300">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red/10 rounded-full blur-2xl"></div>
+            
+            <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-8">
+              Działamy w promieniu <strong class="text-white border-b-2 border-[#d32f2f]/30 pb-0.5">60 km od Skwierzyny</strong>, oferując kompleksowe usługi ziemne z wykorzystaniem nowoczesnej minikoparki o masie <strong class="text-white font-semibold">2,6 t</strong> oraz wywrotki <strong class="text-white font-semibold">3,5 t</strong>. Stawiamy na terminowość, dokładność i indywidualne podejście do każdego zlecenia.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-4 border-t border-white/5">
+              <div class="flex flex-col">
+                <span class="font-display font-extrabold text-3xl md:text-4xl text-brand-red font-mono">60 km</span>
+                <span class="text-xs text-gray-400 font-mono tracking-wider uppercase mt-1">Zasięg działania</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-extrabold text-3xl md:text-4xl text-white font-mono">2.6 T</span>
+                <span class="text-xs text-gray-400 font-mono tracking-wider uppercase mt-1">Masa koparki</span>
+              </div>
+              <div class="flex flex-col col-span-2 sm:col-span-1">
+                <span class="font-display font-extrabold text-3xl md:text-4xl text-white font-mono">3.5 T</span>
+                <span class="text-xs text-gray-400 font-mono tracking-wider uppercase mt-1">Wywrotka DMC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ZAKRES USŁUG SECTION -->
+  <section id="uslugi" class="py-24 bg-[#f5f5f5] text-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Nagłówek Sekcji -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-item">
+        <span class="text-[#d32f2f] font-mono text-xs uppercase tracking-widest font-extrabold block mb-2">Szeroki wachlarz prac</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl uppercase text-brand-dark mb-4">
+          Zakres <span class="text-brand-red">Usług</span>
+        </h2>
+        <div class="h-1 w-24 bg-brand-red mx-auto mb-6"></div>
+        <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+          Dzięki doświadczeniu oraz sprawnej flocie, realizujemy szerokie spektrum robót ziemnych. Dbamy o porządek i bezwzględną precyzję na budowie.
+        </p>
+      </div>
+
+      <!-- Grid Usług -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Karta 1 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Niwelacja terenu
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Precyzyjne wyrównywanie i profilowanie działki pod budowę domu, trawnik, parking czy podjazd.</p>
+          </div>
+        </div>
+
+        <!-- Karta 2 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item delay-100">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Kształtowanie terenu
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Aranżowanie spadków, skarp, ozdobne formowanie ziemi pod projekty ogrodowe.</p>
+          </div>
+        </div>
+
+        <!-- Karta 3 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item delay-200">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Wykopy pod fundamenty
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Bezpieczne, precyzyjne i zgodne z planami wykopy pod budynki mieszkalne, garaże czy ogrodzenia.</p>
+          </div>
+        </div>
+
+        <!-- Karta 4 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item delay-300">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Przyłącza (Prąd, woda, gaz)
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Wykopy liniowe pod media techniczne i podłączenia instalacyjne w gruncie.</p>
+          </div>
+        </div>
+
+        <!-- Karta 5 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Przydomowe oczyszczalnie
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Przygotowanie wykopów pod zbiorniki oczyszczalni ścieków wraz z drenażami rozsączającymi.</p>
+          </div>
+        </div>
+
+        <!-- Karta 6 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item delay-100">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Zbiorniki na deszczówkę
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Kompleksowe wykonanie podziemnych zbiorników retencyjnych z podłączeniami rur spustowych.</p>
+          </div>
+        </div>
+
+        <!-- Karta 7 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item delay-200">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Odwożenie urobku
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Sprawny wywóz zbytecznego piasku, ziemi, gliny czy gruzu budowlanego naszą wywrotką.</p>
+          </div>
+        </div>
+
+        <!-- Karta 8 -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:border-[#d32f2f]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between reveal-item delay-300">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red mb-5 shadow-sm">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9" /></svg>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-brand-dark mb-2 tracking-wide uppercase">
+              ✔ Prace ziemne
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Wszelkie niestandardowe, specjalistyczne roboty gruntowe na życzenie klienta.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SPRZĘT SECTION -->
+  <section id="sprzet" class="py-24 bg-[#111111] relative overflow-hidden">
+    <div class="absolute left-1/4 bottom-10 w-[500px] h-[500px] bg-brand-red/5 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Nagłówek -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-item">
+        <span class="text-brand-red font-mono text-xs uppercase tracking-widest font-extrabold block mb-2">Zaplecze Maszynowe</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl uppercase text-white mb-4">
+          Nasz <span class="text-brand-red">Sprzęt</span>
+        </h2>
+        <div class="h-1 w-24 bg-brand-red mx-auto mb-6"></div>
+        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+          Niezawodna flota maszyn to podstawa szybkiego realizowania zleceń. Dysponujemy wysoce wydajnymi, nowoczesnymi maszynami, które wjadą na każdy teren.
+        </p>
+      </div>
+
+      <!-- Karty Sprzętu -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- Minikoparka -->
+        <div class="glass-panel p-8 rounded-2xl relative group hover:border-[#d32f2f]/30 transition-all duration-300 reveal-item">
+          <div class="absolute top-4 right-4 text-brand-red/20 group-hover:text-brand-red/30 transition-colors">
+            <svg class="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="0.5">
+              <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2" />
+            </svg>
+          </div>
+
+          <span class="text-xs font-mono text-brand-red font-bold tracking-widest uppercase mb-2 block">Maszyny gąsienicowe</span>
+          <h3 class="font-display font-extrabold text-2xl text-white tracking-wide uppercase mb-3">Minikoparka</h3>
+          
+          <div class="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/30 text-white font-mono text-sm px-4 py-1.5 rounded-lg mb-6">
+            <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+            <span>Masa robocza: <strong>2,6 T</strong></span>
+          </div>
+
+          <p class="text-gray-300 text-sm leading-relaxed mb-6">
+            Wydajna minikoparka charakteryzująca się doskonałą stabilnością i imponującą siłą kopania. Gumowe gąsienice minimalizują uszkodzenia gruntu na posesjach prywatnych.
+          </p>
+
+          <ul class="space-y-2 border-t border-white/5 pt-4 text-xs text-gray-400">
+            <li class="flex items-center gap-2"><span class="text-brand-red">✔</span> Łyżki o różnych szerokościach</li>
+            <li class="flex items-center gap-2"><span class="text-brand-red">✔</span> Zwrotność w najciaśniejszych ogrodach</li>
+          </ul>
+        </div>
+
+        <!-- Wywrotka -->
+        <div class="glass-panel p-8 rounded-2xl relative group hover:border-[#d32f2f]/30 transition-all duration-300 reveal-item delay-100">
+          <div class="absolute top-4 right-4 text-brand-red/20 group-hover:text-brand-red/30 transition-colors">
+            <svg class="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="0.5">
+              <path d="M13 9h4l3 3v5h-2M1 1h12v12H1z" />
+            </svg>
+          </div>
+
+          <span class="text-xs font-mono text-brand-red font-bold tracking-widest uppercase mb-2 block">Transport drogowy</span>
+          <h3 class="font-display font-extrabold text-2xl text-white tracking-wide uppercase mb-3">Wywrotka</h3>
+          
+          <div class="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/30 text-white font-mono text-sm px-4 py-1.5 rounded-lg mb-6">
+            <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+            <span>DMC ładowność: <strong>3,5 T</strong></span>
+          </div>
+
+          <p class="text-gray-300 text-sm leading-relaxed mb-6">
+            Zwrotne i dynamiczne auto samowyładowcze. Niewielki tonaż i wymiary pozwalają bez obaw wjechać na prywatne bramy i kostki brukowe bez ich uszkadzania.
+          </p>
+
+          <ul class="space-y-2 border-t border-white/5 pt-4 text-xs text-gray-400">
+            <li class="flex items-center gap-2"><span class="text-brand-red">✔</span> Szybki wysyp trójstronny</li>
+            <li class="flex items-center gap-2"><span class="text-brand-red">✔</span> Dowóz kruszyw i czarnoziemu</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Podsumowanie -->
+      <div class="text-center mt-12 bg-white/5 max-w-2xl mx-auto py-4 px-6 rounded-xl border border-white/5 reveal-item">
+        <p class="text-xs md:text-sm text-gray-300 italic">
+          💪 Wykorzystywany sprzęt pozwala wykonywać zarówno małe, jak i bardziej wymagające inwestycje budowlane oraz przydomowe.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DLACZEGO WARTO SECTION -->
+  <section id="dlaczego-warto" class="py-24 bg-[#f5f5f5] text-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Nagłówek sekcji -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-item">
+        <span class="text-brand-red font-mono text-xs uppercase tracking-widest font-extrabold block mb-2">Nasze standardy</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl uppercase text-brand-dark mb-4">
+          Dlaczego <span class="text-brand-red">Warto?</span>
+        </h2>
+        <div class="h-1 w-24 bg-brand-red mx-auto mb-6"></div>
+        <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+          Stawiamy na najwyższy standard i partnerskie relacje z inwestorami. Bezpieczeństwo i satysfakcja klienta to nasz priorytet.
+        </p>
+      </div>
+
+      <!-- Grid Zalet -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Zaleta 1 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">nowoczesny sprzęt</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Sprawne i nowoczesne maszyny skracają czas pracy i gwarantują nienaganną precyzję.</p>
+        </div>
+
+        <!-- Zaleta 2 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item delay-100">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">terminowość</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Zjawiamy się punktualnie i wykonujemy zaplanowane roboty zgodnie z harmonogramem.</p>
+        </div>
+
+        <!-- Zaleta 3 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item delay-200">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">dokładność</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Każdy profil gruntu, wykop oraz niwelacja są realizowane idealnie pod projekt.</p>
+        </div>
+
+        <!-- Zaleta 4 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item delay-300">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">kompleksowa obsługa</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Zajmujemy się wszystkim kompleksowo — od kopania po załadunek i sprawny wywóz.</p>
+        </div>
+
+        <!-- Zaleta 5 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">doświadczenie</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Wieloletnia praca na trudnych terenach budowlanych pozwala sprawnie omijać przeszkody.</p>
+        </div>
+
+        <!-- Zaleta 6 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item delay-100">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">szybkie realizacje</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Zgrana współpraca minikoparki z wywrotką pozwala na ekspresowe zamykanie etapów.</p>
+        </div>
+
+        <!-- Zaleta 7 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item delay-200">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">dojazd do klienta</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Posiadamy własną autolawetę i transport maszynowy, którym dojedziemy wszędzie do 60 km.</p>
+        </div>
+
+        <!-- Zaleta 8 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all flex flex-col items-center text-center reveal-item delay-300">
+          <div class="w-14 h-14 rounded-2xl bg-brand-red/5 text-brand-red flex items-center justify-center mb-5">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+          </div>
+          <h3 class="font-display font-extrabold text-base text-brand-dark uppercase tracking-wide mb-2">dla osób i firm</h3>
+          <p class="text-gray-600 text-xs leading-relaxed">Realizujemy drobne zlecenia przydomowe oraz kompleksowe podwykonawstwa dla firm.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REALIZACJE SECTION (GALERIA) -->
+  <section id="realizacje" class="py-24 bg-[#111111] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Nagłówek -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-item">
+        <span class="text-brand-red font-mono text-xs uppercase tracking-widest font-extrabold block mb-2">Nasze realizacje</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl uppercase text-white mb-4">
+          Galeria <span class="text-brand-red">Prac</span>
+        </h2>
+        <div class="h-1 w-24 bg-brand-red mx-auto mb-6"></div>
+        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+          Zajrzyj na plac budowy naszych zakończonych projektów. Kliknij na zdjęcie, aby otworzyć je w nowoczesnym lightboxie.
+        </p>
+      </div>
+
+      <!-- Trzy Sekcje Realizacji -->
+      <div class="space-y-20">
+        
+        <!-- Sekcja 1: Budowa drogi tymczasowej -->
+        <div class="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-10 reveal-item">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/5">
+            <div>
+              <span class="text-xs font-mono text-brand-red font-bold tracking-widest uppercase mb-1.5 block">Kategoria I</span>
+              <h3 class="font-display font-extrabold text-2xl md:text-3xl text-white uppercase tracking-wide">Budowa drogi tymczasowej</h3>
+              <p class="text-gray-400 text-sm mt-1">Realizacja budowy drogi tymczasowej dla Pana Sebastiana</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <div class="bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                <span class="text-brand-red font-bold">Powierzchnia:</span>
+                <span class="font-mono text-gray-200">320 m²</span>
+              </div>
+              <div class="bg-[#d32f2f]/10 border border-[#d32f2f]/30 px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                <span class="text-brand-red font-bold">Czas:</span>
+                <span class="font-mono text-gray-200">187 200 s</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zdjęcia Droga -->
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            
+            <div onclick="openLightbox('road', 0)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/tp45pWtg/720571920-122120624090954926-6887877073173352045-n-1.jpg" alt="Droga 1" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('road', 1)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/93SMSCfr/721209266-122120624144954926-696378332577837577-n.jpg" alt="Droga 2" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('road', 2)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/sJWJHCRS/721349031-122120624168954926-2794062729240256122-n.jpg" alt="Droga 3" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('road', 3)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/DgsvGHyN/721310531-122120624132954926-7549766676322610166-n.jpg" alt="Droga 4" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('road', 4)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/TDPYMtJ6/721051720-122120624102954926-1552929982338374066-n.jpg" alt="Droga 5" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('road', 5)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/pvrn6cLf/721135960-122120624156954926-200422630846975026-n.jpg" alt="Droga 6" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Sekcja 2: Przydomowa oczyszczalnia ścieków -->
+        <div class="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-10 reveal-item">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/5">
+            <div>
+              <span class="text-xs font-mono text-brand-red font-bold tracking-widest uppercase mb-1.5 block">Kategoria II</span>
+              <h3 class="font-display font-extrabold text-2xl md:text-3xl text-white uppercase tracking-wide">Przydomowa oczyszczalnia ścieków</h3>
+              <p class="text-gray-400 text-sm mt-1">Przydomowa oczyszczalnia ścieków z rozsączaniem tunelowym.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <div class="bg-[#d32f2f]/10 border border-[#d32f2f]/30 px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                <span class="text-brand-red font-bold">Czas realizacji:</span>
+                <span class="font-mono text-gray-200">43 200 s</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zdjęcia Oczyszczalnia -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
+            
+            <div onclick="openLightbox('sewage', 0)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/0yH1YtWY/718277959-122119738328954926-8117529431519553750-n.jpg" alt="Oczyszczalnia 1" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('sewage', 1)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/dss1K4ry/719233139-122119738280954926-2490264358433170420-n.jpg" alt="Oczyszczalnia 2" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('sewage', 2)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/pBLQcR9b/718907167-122119738316954926-6836889493258303500-n.jpg" alt="Oczyszczalnia 3" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+            <div onclick="openLightbox('sewage', 3)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/9388PWxj/719099817-122119738268954926-5594735290852910515-n.jpg" alt="Oczyszczalnia 4" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Sekcja 3: Przygotowanie terenu pod garaż -->
+        <div class="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-10 reveal-item">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/5">
+            <div>
+              <span class="text-xs font-mono text-brand-red font-bold tracking-widest uppercase mb-1.5 block">Kategoria III</span>
+              <h3 class="font-display font-extrabold text-2xl md:text-3xl text-white uppercase tracking-wide">Przygotowanie terenu pod garaż</h3>
+              <p class="text-gray-400 text-sm mt-1">Przygotowanie terenu pod garaż lekkiej konstrukcji.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <div class="bg-[#d32f2f]/10 border border-[#d32f2f]/30 px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                <span class="text-brand-red font-bold">Czas realizacji:</span>
+                <span class="font-mono text-gray-200">2 godziny wraz z dojazdem.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zdjęcie Garaż -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            
+            <div onclick="openLightbox('garage', 0)" class="group aspect-square relative rounded-xl overflow-hidden cursor-zoom-in bg-black border border-white/5">
+              <img src="https://i.ibb.co/YK4Dfqn/691563668-122114181338954926-1199743753633478965-n.jpg" alt="Garaż 1" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="bg-brand-red text-white p-2.5 rounded-full"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OBSZAR DZIAŁANIA SECTION -->
+  <section id="obszar" class="py-24 bg-[#111111] relative overflow-hidden border-t border-b border-white/5">
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#d32f2f]/5 rounded-full animate-ping-slow pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Lewa strona: Opis -->
+        <div class="lg:col-span-5 flex flex-col justify-center reveal-item">
+          <div class="flex items-center gap-2 text-brand-red mb-3">
+            <span class="w-8 h-[2px] bg-brand-red"></span>
+            <span class="font-mono text-xs uppercase tracking-widest font-bold">Lokalizacja usług</span>
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl uppercase text-white leading-tight mb-6">
+            Obszar <br>
+            <span class="text-brand-red">Działania</span>
+          </h2>
+          <div class="h-1.5 w-20 bg-brand-red rounded mb-8"></div>
+
+          <!-- Karta Zasięgu -->
+          <div class="glass-panel p-6 rounded-2xl border-l-4 border-brand-red mb-6 flex gap-4 items-start">
+            <div class="p-3 bg-brand-red/10 rounded-xl text-brand-red mt-1 shrink-0">
+              <svg class="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-extrabold text-lg text-white uppercase tracking-wide mb-1">
+                📍 Działamy w promieniu 60 km od Skwierzyny
+              </h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Nasza siedziba znajduje się w Skwierzynie. Świadczymy dojazd i usługi do 60 km, obejmując liczne okoliczne miejscowości i tereny budów.
+              </p>
+            </div>
+          </div>
+
+          <!-- Okolice -->
+          <div class="grid grid-cols-2 gap-2 text-xs text-gray-400 font-mono tracking-wider uppercase bg-white/5 p-4 rounded-xl">
+            <div>• Skwierzyna</div>
+            <div>• Gorzów Wlkp.</div>
+            <div>• Międzyrzecz</div>
+            <div>• Bledzew</div>
+            <div>• Przytoczna</div>
+            <div>• Lubniewice</div>
+            <div>• Trzciel</div>
+            <div>• Sulęcin</div>
+          </div>
+        </div>
+
+        <!-- Prawa strona: Grafika radaru -->
+        <div class="lg:col-span-7 flex justify-center reveal-item delay-100">
+          <div class="w-full max-w-lg aspect-square bg-[#1a1a1a] rounded-full border border-white/10 p-6 shadow-2xl relative flex items-center justify-center">
+            
+            <!-- SVG Mapy i Radar -->
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
+              <defs>
+                <radialGradient id="radarGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#d32f2f" stop-opacity="0.25" />
+                  <stop offset="60%" stop-color="#d32f2f" stop-opacity="0.05" />
+                  <stop offset="100%" stop-color="#d32f2f" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <circle cx="200" cy="200" r="180" fill="url(#radarGlow)" stroke="#333333" stroke-width="1" stroke-dasharray="4,4" />
+              <circle cx="200" cy="200" r="120" stroke="#444444" stroke-width="1" stroke-dasharray="3,3" />
+              <circle cx="200" cy="200" r="60" stroke="#555555" stroke-width="1" />
+              
+              <line x1="20" y1="200" x2="380" y2="200" stroke="#333" stroke-width="1" />
+              <line x1="200" y1="20" x2="200" y2="380" stroke="#333" stroke-width="1" />
+
+              <!-- Ślad skanowania radaru -->
+              <path d="M200 200 L200 20 A180 180 0 0 1 327 73 Z" fill="rgba(211, 47, 47, 0.05)" />
+
+              <!-- Miasta -->
+              <circle cx="200" cy="70" r="4" fill="#888" />
+              <text x="200" y="58" fill="#aaa" font-size="10" font-family="monospace" text-anchor="middle">GORZÓW WLKP.</text>
+
+              <circle cx="200" cy="310" r="4" fill="#888" />
+              <text x="200" y="328" fill="#aaa" font-size="10" font-family="monospace" text-anchor="middle">MIĘDZYRZECZ</text>
+
+              <circle cx="300" cy="180" r="4" fill="#888" />
+              <text x="308" y="184" fill="#aaa" font-size="10" font-family="monospace" text-anchor="start">PRZYTOCZNA</text>
+
+              <circle cx="100" cy="210" r="4" fill="#888" />
+              <text x="92" y="214" fill="#aaa" font-size="10" font-family="monospace" text-anchor="end">BLEDZEW</text>
+
+              <circle cx="130" cy="140" r="4" fill="#888" />
+              <text x="122" y="136" fill="#aaa" font-size="9" font-family="monospace" text-anchor="end">LUBNIEWICE</text>
+
+              <circle cx="290" cy="270" r="4" fill="#888" />
+              <text x="298" y="274" fill="#aaa" font-size="9" font-family="monospace" text-anchor="start">TRZCIEL</text>
+
+              <circle cx="200" cy="200" r="6" fill="#d32f2f" />
+            </svg>
+
+            <!-- Pulsowanie środka -->
+            <div class="absolute w-8 h-8 rounded-full border border-[#d32f2f] bg-[#d32f2f]/15 animate-ping pointer-events-none"></div>
+
+            <!-- Etykieta Skwierzyna -->
+            <div class="absolute top-[46%] left-[45%] bg-brand-red text-white text-[10px] font-mono font-bold uppercase tracking-wider py-1 px-2.5 rounded shadow-lg z-20 pointer-events-none flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              <span>Skwierzyna</span>
+            </div>
+
+            <div class="absolute bottom-6 bg-black/80 backdrop-blur border border-white/10 px-4 py-1.5 rounded-full text-[11px] font-mono text-gray-300">
+              Zasięg operacyjny: <span class="text-brand-red font-bold">60 KM</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT SECTION & INFO -->
+  <section id="kontakt" class="py-24 bg-[#f5f5f5] text-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Nagłówek -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-item">
+        <span class="text-brand-red font-mono text-xs uppercase tracking-widest font-extrabold block mb-2">Szybki kontakt</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl uppercase text-brand-dark mb-4">
+          Kontakt i <span class="text-brand-red">Wycena</span>
+        </h2>
+        <div class="h-1 w-24 bg-brand-red mx-auto mb-6"></div>
+        <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+          Skontaktuj się z nami bezpośrednio przez telefon lub e-mail. Odpowiemy na wszystkie pytania i przygotujemy dla Ciebie darmową, niezobowiązującą wycenę prac.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch reveal-item">
+        
+        <!-- Telefon -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="p-4 bg-brand-red/5 text-brand-red rounded-xl shrink-0">
+              <svg class="w-6 h-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono text-gray-400 uppercase tracking-widest block mb-0.5">Szybki kontakt</span>
+              <h4 class="font-display font-extrabold text-lg text-brand-dark uppercase">Telefon</h4>
+              <p class="text-xl font-mono font-black text-brand-red mt-1 hover:underline">
+                <a href="tel:787153620">787 153 620</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between gap-4">
+          <div class="flex items-start gap-4 overflow-hidden">
+            <div class="p-4 bg-brand-red/5 text-brand-red rounded-xl shrink-0">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            </div>
+            <div class="overflow-hidden">
+              <span class="text-xs font-mono text-gray-400 uppercase tracking-widest block mb-0.5">Wyślij e-mail</span>
+              <h4 class="font-display font-extrabold text-lg text-brand-dark uppercase">E-mail</h4>
+              <p class="text-sm font-mono font-bold text-gray-800 mt-1 hover:underline truncate">
+                <a href="mailto:przemekszewczyk86@gmail.com">przemekszewczyk86@gmail.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Obszar -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="p-4 bg-brand-red/5 text-brand-red rounded-xl shrink-0">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /></svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono text-gray-400 uppercase tracking-widest block mb-0.5">Siedziba firmy</span>
+              <h4 class="font-display font-extrabold text-lg text-brand-dark uppercase">Lokalizacja</h4>
+              <p class="text-sm text-gray-700 mt-1 leading-relaxed">
+                Skwierzyna i okolice (promień do 60 km). Gwarantujemy dojazd własnym transportem.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Wielki przycisk dzwonienia -->
+      <div class="max-w-md mx-auto mt-10 reveal-item">
+        <a 
+          href="tel:787153620" 
+          class="w-full flex items-center justify-center gap-3 bg-brand-red hover:bg-[#b52626] text-white py-5 rounded-2xl font-display font-black text-lg tracking-wider uppercase shadow-xl shadow-brand-red/25 transition-all transform hover:-translate-y-1"
+        >
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+          <span>Zadzwoń teraz</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STOPKA -->
+  <footer class="bg-[#111111] text-gray-400 pt-16 pb-12 border-t border-white/5 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        
+        <!-- O firmie w stopce -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <img 
+              src="https://i.ibb.co/WNMZVsfs/669763260-122108823956954926-8129804684380492949-n.jpg" 
+              alt="Mini Koparka Skwierzyna Logo" 
+              class="w-12 h-12 rounded-full border border-brand-red/30 object-cover"
+              referrerpolicy="no-referrer"
+            >
+            <div class="flex flex-col">
+              <span class="font-display font-black text-white text-lg tracking-wider uppercase">Mini Koparka</span>
+              <span class="font-mono text-xs text-brand-red font-bold tracking-widest uppercase">Skwierzyna</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed max-w-sm">
+            Świadczymy najwyższej klasy usługi ziemne minikoparką o masie 2,6T oraz wywrotką 3,5T na terenie Skwierzyny i okolic do 60 km.
+          </p>
+          <div class="text-white text-xs font-mono font-bold tracking-wider uppercase">
+            🚜 Żadnej pracy się nie boimy!
+          </div>
+        </div>
+
+        <!-- Menu w stopce -->
+        <div>
+          <h4 class="text-white font-display font-bold text-sm uppercase tracking-wider mb-4 border-b border-white/5 pb-2">
+            Menu strony
+          </h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#o-firmie" class="hover:text-white transition">O firmie</a></li>
+            <li><a href="#uslugi" class="hover:text-white transition">Zakres usług</a></li>
+            <li><a href="#sprzet" class="hover:text-white transition">Flota sprzętowa</a></li>
+            <li><a href="#dlaczego-warto" class="hover:text-white transition">Dlaczego warto</a></li>
+            <li><a href="#realizacje" class="hover:text-white transition">Realizacje</a></li>
+            <li><a href="#obszar" class="hover:text-white transition">Obszar działania</a></li>
+          </ul>
+        </div>
+
+        <!-- Kontakty stopka -->
+        <div>
+          <h4 class="text-white font-display font-bold text-sm uppercase tracking-wider mb-4 border-b border-white/5 pb-2">
+            Kontakt bezpośredni
+          </h4>
+          <ul class="space-y-3 text-xs">
+            <li class="flex items-center gap-2">
+              <span>📞</span>
+              <a href="tel:787153620" class="hover:text-white transition font-mono">787 153 620</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span>📧</span>
+              <a href="mailto:przemekszewczyk86@gmail.com" class="hover:text-white transition font-mono truncate">przemekszewczyk86@gmail.com</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span>📍</span>
+              <span>Skwierzyna i okolice (do 60 km)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Standardy stopka -->
+        <div>
+          <h4 class="text-white font-display font-bold text-sm uppercase tracking-wider mb-4 border-b border-white/5 pb-2">
+            Standard Jakości
+          </h4>
+          <div class="bg-white/5 p-4 rounded-xl border border-white/5 space-y-2">
+            <div class="flex items-center gap-2 text-xs text-white">
+              <span class="text-brand-red">✔</span>
+              <span>Darmowa i szybka wycena</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-white">
+              <span class="text-brand-red">✔</span>
+              <span>Czystość placu roboczego</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-white">
+              <span class="text-brand-red">✔</span>
+              <span>Faktury VAT / Paragony</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dolny pasek autorski -->
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <span>&copy; <script>document.write(new Date().getFullYear())</script> Mini Koparka Skwierzyna. Wszelkie prawa zastrzeżone.</span>
+        <div class="flex gap-4">
+          <a href="#o-firmie" class="hover:text-white transition">O nas</a>
+          <span>•</span>
+          <a href="#kontakt" class="hover:text-white transition font-bold text-brand-red">Darmowa wycena</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL (TRYB PEŁNOEKRANOWY GALERII) -->
+  <div 
+    id="lightbox" 
+    class="fixed inset-0 bg-black/95 z-50 hidden flex-col items-center justify-center p-4 sm:p-6 select-none"
+  >
+    <!-- Przyciski i opisy u góry -->
+    <div class="absolute top-0 inset-x-0 bg-gradient-to-b from-black/80 to-transparent p-4 flex items-center justify-between z-10">
+      <div>
+        <h4 id="lightbox-title" class="text-white text-sm sm:text-base font-display font-bold uppercase tracking-wide">Budowa drogi tymczasowej</h4>
+        <span id="lightbox-counter" class="text-[11px] font-mono text-gray-400 uppercase tracking-widest mt-0.5 block">Zdjęcie 1 z 6</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="hidden md:inline bg-white/5 border border-white/10 px-2.5 py-1 rounded text-[10px] font-mono text-gray-400">ESC: zamknij • ← → strzałki</span>
+        <button onclick="closeLightbox()" class="bg-brand-red text-white hover:bg-[#b52626] p-2 rounded-lg transition" aria-label="Zamknij">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Główny kontener prezentacji -->
+    <div class="relative w-full max-w-5xl flex items-center justify-center grow py-12">
+      <!-- Przycisk Poprzednie -->
+      <button onclick="navigateLightbox(-1)" class="absolute left-2 sm:left-4 bg-black/50 hover:bg-[#d32f2f] text-white p-3 rounded-full border border-white/10 transition z-10" aria-label="Poprzednie">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+
+      <!-- Obraz -->
+      <div class="max-w-full max-h-[75vh] flex items-center justify-center">
+        <img id="lightbox-img" src="" alt="Realizacja" class="max-w-full max-h-[75vh] rounded-lg shadow-2xl object-contain border border-white/10 pointer-events-none transition-all duration-300">
+      </div>
+
+      <!-- Przycisk Następne -->
+      <button onclick="navigateLightbox(1)" class="absolute right-2 sm:right-4 bg-black/50 hover:bg-[#d32f2f] text-white p-3 rounded-full border border-white/10 transition z-10" aria-label="Następne">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+
+    <!-- Dolne kropki pozycjonujące -->
+    <div id="lightbox-dots" class="absolute bottom-6 flex justify-center gap-1.5 z-10 max-w-full overflow-x-auto py-2">
+      <!-- Generowane dynamicznie -->
+    </div>
+  </div>
+
+  <!-- SKRYPTY VANILLA JAVASCRIPT -->
+  <script>
+    // Baza danych dla galerii (Lightbox)
+    const galleryData = {
+      road: {
+        title: 'Budowa drogi tymczasowej',
+        images: [
+          'https://i.ibb.co/tp45pWtg/720571920-122120624090954926-6887877073173352045-n-1.jpg',
+          'https://i.ibb.co/93SMSCfr/721209266-122120624144954926-696378332577837577-n.jpg',
+          'https://i.ibb.co/sJWJHCRS/721349031-122120624168954926-2794062729240256122-n.jpg',
+          'https://i.ibb.co/DgsvGHyN/721310531-122120624132954926-7549766676322610166-n.jpg',
+          'https://i.ibb.co/TDPYMtJ6/721051720-122120624102954926-1552929982338374066-n.jpg',
+          'https://i.ibb.co/pvrn6cLf/721135960-122120624156954926-200422630846975026-n.jpg'
+        ]
+      },
+      sewage: {
+        title: 'Przydomowa oczyszczalnia ścieków',
+        images: [
+          'https://i.ibb.co/0yH1YtWY/718277959-122119738328954926-8117529431519553750-n.jpg',
+          'https://i.ibb.co/dss1K4ry/719233139-122119738280954926-2490264358433170420-n.jpg',
+          'https://i.ibb.co/pBLQcR9b/718907167-122119738316954926-6836889493258303500-n.jpg',
+          'https://i.ibb.co/9388PWxj/719099817-122119738268954926-5594735290852910515-n.jpg'
+        ]
+      },
+      garage: {
+        title: 'Przygotowanie terenu pod garaż',
+        images: [
+          'https://i.ibb.co/YK4Dfqn/691563668-122114181338954926-1199743753633478965-n.jpg'
+        ]
+      }
+    };
+
+    let currentGalleryKey = null;
+    let currentImageIndex = 0;
+
+    // Obsługa lepkości paska nawigacji (Sticky Nav)
+    const mainNav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        mainNav.classList.remove('bg-transparent', 'py-5');
+        mainNav.classList.add('fixed', 'top-0', 'bg-[#111111]/90', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/5', 'py-3');
+      } else {
+        mainNav.classList.remove('fixed', 'bg-[#111111]/90', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/5', 'py-3');
+        mainNav.classList.add('absolute', 'bg-transparent', 'py-5');
+      }
+    });
+
+    // Szuflada nawigacji mobilnej
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileDrawer.classList.contains('hidden');
+      if (isExpanded) {
+        mobileDrawer.classList.remove('hidden');
+        hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`;
+      } else {
+        mobileDrawer.classList.add('hidden');
+        hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+      }
+    });
+
+    // Zamknięcie szuflady przy kliknięciu linków
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.add('hidden');
+        hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+      });
+    });
+
+    // Obsługa Lightboxa
+    const lightboxModal = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const lightboxDots = document.getElementById('lightbox-dots');
+
+    function openLightbox(galleryKey, index) {
+      currentGalleryKey = galleryKey;
+      currentImageIndex = index;
+      document.body.classList.add('no-scroll');
+      lightboxModal.classList.remove('hidden');
+      lightboxModal.classList.add('flex');
+      updateLightboxContent();
+    }
+
+    function closeLightbox() {
+      document.body.classList.remove('no-scroll');
+      lightboxModal.classList.add('hidden');
+      lightboxModal.classList.remove('flex');
+      currentGalleryKey = null;
+    }
+
+    function navigateLightbox(direction) {
+      if (!currentGalleryKey) return;
+      const images = galleryData[currentGalleryKey].images;
+      currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const gallery = galleryData[currentGalleryKey];
+      const imageSrc = gallery.images[currentImageIndex];
+      
+      // Delikatny efekt fade-out przed podmianą
+      lightboxImg.style.opacity = '0';
+      setTimeout(() => {
+        lightboxImg.src = imageSrc;
+        lightboxTitle.innerText = gallery.title;
+        lightboxCounter.innerText = `Zdjęcie ${currentImageIndex + 1} z ${gallery.images.length}`;
+        lightboxImg.style.opacity = '1';
+        generateLightboxDots();
+      }, 150);
+    }
+
+    function generateLightboxDots() {
+      const gallery = galleryData[currentGalleryKey];
+      lightboxDots.innerHTML = '';
+      if (gallery.images.length <= 1) return;
+
+      gallery.images.forEach((_, dotIdx) => {
+        const button = document.createElement('button');
+        button.className = `h-2 rounded-full shrink-0 transition-all ${dotIdx === currentImageIndex ? 'w-8 bg-brand-red' : 'w-2 bg-white/30 hover:bg-white/50'}`;
+        button.setAttribute('aria-label', `Zdjęcie ${dotIdx + 1}`);
+        button.onclick = () => {
+          currentImageIndex = dotIdx;
+          updateLightboxContent();
+        };
+        lightboxDots.appendChild(button);
+      });
+    }
+
+    // Nawigacja klawiszami dla Lightboxa
+    window.addEventListener('keydown', (e) => {
+      if (lightboxModal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowRight') {
+        navigateLightbox(1);
+      } else if (e.key === 'ArrowLeft') {
+        navigateLightbox(-1);
+      }
+    });
+    // Scroll Reveal (efekt pojawiania się sekcji)
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.reveal-item').forEach(item => {
+      revealObserver.observe(item);
+    });
+  </script>
+</body>
+</html>

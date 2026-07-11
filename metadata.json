@@ -1,0 +1,6 @@
+{
+  "name": "Mini Koparka Skwierzyna",
+  "description": "Profesjonalna i nowoczesna strona internetowa dla firmy Mini Koparka Skwierzyna świadczącej usługi ziemne minikoparką 2,6T oraz wywrotką 3,5T.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
